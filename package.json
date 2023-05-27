@@ -9,7 +9,7 @@
     "watch": "npm run compile -- --watch"
   },
   "bin": {
-    "text-cli": "./bin/cmd"
+    "test-cli": "./bin/cmd"
   },
   "author": "zdj",
   "license": "ISC",
