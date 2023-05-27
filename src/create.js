@@ -1,13 +1,12 @@
-import symbol from 'log-symbols';
-import chalk from 'chalk';
-import ora from 'ora';
+const symbol = require('log-symbols');
+const chalk = require('chalk');
+const ora = require('ora');
 
-import {
+const {
   notExistFold,
   prompt,
   downloadTemplate,
-  updateJsonFile
-} from './util';
+} = require('./util.js');
 
 let create = async (ProjectName) => {
 
@@ -21,9 +20,9 @@ let create = async (ProjectName) => {
       // 用户询问交互
       prompt().then((answer) => {
 
-        // 目前只建了一个vue的模板，所以只能先跳过react🌶 
+        // 目前只建了一个vue的模板
         if (answer.frame === 'react') {
-          console.log(symbol.warning, chalk.yellow('react模板还在路上，莫急莫急~'));
+          console.log(symbol.warning, chalk.yellow('暂无react模板，敬请期待...'));
           process.exit(1);
         }
 
@@ -37,7 +36,7 @@ let create = async (ProjectName) => {
         let Api = '';
         switch (answer.frame) {
           case 'vue':
-            Api = 'direct:https://github.com/For-Article/vue-temlate.git';
+            Api = 'direct:https://github.com/zdjzce923/zdj-vue-monorepo.git';
             break;
           case 'react':
             Api = 'direct:https://github.com/LuoYangYY/react-template.git';

@@ -1,0 +1,1 @@
+{"version":3,"file":"init.js","names":["init","module","exports"],"sources":["../src/init.js"],"sourcesContent":["function init() {}\n\n\nmodule.exports = init;\n"],"mappings":";;AAAA,SAASA,IAAIA,CAAA,EAAG,CAAC;AAGjBC,MAAM,CAACC,OAAO,GAAGF,IAAI"}

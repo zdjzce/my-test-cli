@@ -2,25 +2,29 @@
   "name": "text-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel src -d dist",
-    "watch": "npm run compile -- --watch"
+    "compile": "babel src --out-dir dist --source-maps --watch ",
+    "watch": "npm run compile --watch"
   },
   "bin": {
-    "test-cli": "./bin/cmd"
+    "test-cli": "./bin/cli.js",
+    "tci": "./bin/cli.js"
   },
   "author": "zdj",
   "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-env": "^2.4.1",
-    "chalk": "^5.2.0",
+  "dependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "chalk": "^3.0.0",
     "commander": "^10.0.1",
     "download-git-repo": "^3.0.2",
-    "inquirer": "^9.2.6",
-    "log-symbols": "^5.1.0",
-    "ora": "^6.3.1"
+    "inquirer": "^7.1.0",
+    "log-symbols": "^3.0.0",
+    "ora": "^4.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1"
   }
 }
