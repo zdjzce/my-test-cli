@@ -40,7 +40,32 @@ let  downloadTemplate = async (ProjectName, api) => {
     });
 };
 
-// 
+// 遍历文件夹树并递归创建子文件夹，如果有git仓库地址就clone，没有就只创建文件夹
+function createDirectories(directory) {
+  if (!fs.existsSync(directory.name)) {
+    fs.mkdirSync(directory.name);
+  }
+  if (directory.repo_url) {
+    exec(`git clone ${directory.repo_url} ${directory.name}`, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`Error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.log(`Stderr: ${stderr}`);
+        return;
+      }
+      console.log(stdout);
+    });
+  }
+  if (directory.children) {
+    directory.children.forEach(childDirectory => {
+      process.chdir(directory.name);
+      createDirectories(childDirectory);
+      process.chdir('..');
+    });
+  }
+}
 
 
 

@@ -1,3 +1,76 @@
 {
-  
+  "choice_project": [
+    {
+      "project_name": "my_project",
+      "version": "1.0.0",
+      "root_directory": {
+        "name": "my_project",
+        "repo_url": "https://github.com/username/my_project.git",
+        "children": [
+          {
+            "name": "src",
+            "repo_url": "https://github.com/username/my_project_src.git",
+            "children": [
+              {
+                "name": "js",
+                "repo_url": "https://github.com/username/my_project_js.git",
+                "children": [
+                  {
+                    "name": "app.js",
+                    "repo_url": "https://github.com/username/my_project_app_js.git"
+                  },
+                  {
+                    "name": "config.js",
+                    "repo_url": "https://github.com/username/my_project_config_js.git"
+                  }
+                ]
+              },
+              {
+                "name": "css",
+                "repo_url": "https://github.com/username/my_project_css.git",
+                "children": [
+                  {
+                    "name": "style.css",
+                    "repo_url": "https://github.com/username/my_project_style_css.git"
+                  },
+                  {
+                    "name": "responsive.css",
+                    "repo_url": "https://github.com/username/my_project_responsive_css.git"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "docs",
+            "repo_url": "https://github.com/username/my_project_docs.git",
+            "children": [
+              {
+                "name": "README.md",
+                "repo_url": "https://github.com/username/my_project_readme_md.git"
+              },
+              {
+                "name": "LICENSE",
+                "repo_url": "https://github.com/username/my_project_license.git"
+              }
+            ]
+          },
+          {
+            "name": "tests",
+            "repo_url": "https://github.com/username/my_project_tests.git",
+            "children": [
+              {
+                "name": "unit_tests.js",
+                "repo_url": "https://github.com/username/my_project_unit_tests_js.git"
+              },
+              {
+                "name": "functional_tests.js",
+                "repo_url": "https://github.com/username/my_project_functional_tests_js.git"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

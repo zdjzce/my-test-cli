@@ -4,7 +4,7 @@
       "type": "list",
       "name": "frame",
       "message": "please choose this project template",
-      "choices": ["基础模板(console、vue-lib、plugin)", "plugin通用"]
+      "choices": ["基础模板core-verse(console、vue-lib、plugin)", "plugin通用"]
     }
   ]
 }
