@@ -57,6 +57,13 @@
           }
         ]
       }
+    },
+    {
+      "project_name": "plugin通用",
+      "root_directory": {
+        "name": "plugin-template",
+        "repo_url": "http://github.chainopen.cn/cverse/plugin-template.git"
+      }     
     }
   ]
 }

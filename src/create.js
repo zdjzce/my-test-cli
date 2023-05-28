@@ -16,6 +16,7 @@ let create = async (ProjectName) => {
   } else {
     notExistFold(ProjectName).then(() => {
       prompt().then((answer) => {
+        console.log('answer:', answer)
 
         /**
          * 根据用户输入的配置信息下载模版&更新模版配置
@@ -26,6 +27,9 @@ let create = async (ProjectName) => {
         downloadTemplate(ProjectName, answer.frame)
           .then(() => {
             loading.succeed('模板下载完成');
+            // console.log('模板下载完成process.cwd()', process.cwd())
+            // answer.rename && fs.renameSync()
+            // answer.git
           });
       })
     });

@@ -22,6 +22,8 @@ var create = /*#__PURE__*/function () {
           } else {
             notExistFold(ProjectName).then(function () {
               prompt().then(function (answer) {
+                console.log('answer:', answer);
+
                 /**
                  * 根据用户输入的配置信息下载模版&更新模版配置
                  */
@@ -29,6 +31,9 @@ var create = /*#__PURE__*/function () {
                 loading.start('模板下载中...');
                 downloadTemplate(ProjectName, answer.frame).then(function () {
                   loading.succeed('模板下载完成');
+                  // console.log('模板下载完成process.cwd()', process.cwd())
+                  // answer.rename && fs.renameSync()
+                  // answer.git
                 });
               });
             });

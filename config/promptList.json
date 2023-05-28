@@ -3,8 +3,21 @@
     {
       "type": "list",
       "name": "frame",
-      "message": "please choose this project template",
-      "choices": ["基础模板core-verse(console、vue-lib、plugin)", "plugin通用"]
-    }
+      "message": "选择模板类型:",
+      "choices": [
+        "基础模板core-verse(console、vue-lib、plugin)",
+        "plugin通用"
+      ]
+    },
+    {
+        "type": "input",
+        "name": "rename",
+        "message": "输入新的文件名(如果需要): "
+    },
+    {
+      "type": "input",
+      "name": "git",
+      "message": "输入新的git地址(如果需要): "
+  }
   ]
 }
