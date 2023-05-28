@@ -9,7 +9,14 @@ var symbol = require('log-symbols');
 var chalk = require('chalk');
 var inquirer = require('inquirer');
 var promptList = require('../config/promptList.json');
-var downloadGit = require('download-git-repo');
+var directoryTree = require('../config/directoryTree.json');
+var _require = require('child_process'),
+  spawn = _require.spawn;
+var _require2 = require('child_process'),
+  exec = _require2.exec;
+var git = require('simple-git');
+// const git = require('isomorphic-git')
+// const http = require('isomorphic-git/http/node')
 
 // 文件是否存在
 var notExistFold = /*#__PURE__*/function () {
@@ -21,6 +28,7 @@ var notExistFold = /*#__PURE__*/function () {
             if (fs.existsSync(name)) {
               console.log(symbol.error, chalk.red('文件夹名已被占用，请更换名字重新创建'));
             } else {
+              fs.mkdirSync(name);
               resolve();
             }
           }));
@@ -46,18 +54,15 @@ var prompt = function prompt() {
 
 // 项目模板远程下载
 var downloadTemplate = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(ProjectName, api) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dir, ProjectName) {
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           return _context2.abrupt("return", new Promise(function (resolve, reject) {
-            downloadGit(api, ProjectName, {
-              clone: true
-            }, function (err) {
-              if (err) {
-                reject(err);
-              } else {
-                resolve();
+            directoryTree.choice_project.forEach(function (dic) {
+              if (dic.project_name === ProjectName) {
+                process.chdir(dir);
+                createDirectories(dic.root_directory);
               }
             });
           }));
@@ -73,31 +78,88 @@ var downloadTemplate = /*#__PURE__*/function () {
 }();
 
 // 遍历文件夹树并递归创建子文件夹，如果有git仓库地址就clone，没有就只创建文件夹
-function createDirectories(directory) {
-  if (!fs.existsSync(directory.name)) {
-    fs.mkdirSync(directory.name);
-  }
-  if (directory.repo_url) {
-    exec("git clone ".concat(directory.repo_url, " ").concat(directory.name), function (error, stdout, stderr) {
-      if (error) {
-        console.log("Error: ".concat(error.message));
-        return;
-      }
-      if (stderr) {
-        console.log("Stderr: ".concat(stderr));
-        return;
-      }
-      console.log(stdout);
-    });
-  }
-  if (directory.children) {
-    directory.children.forEach(function (childDirectory) {
-      process.chdir(directory.name);
-      createDirectories(childDirectory);
-      process.chdir('..');
-    });
-  }
+function createDirectories(_x4) {
+  return _createDirectories.apply(this, arguments);
 }
+function _createDirectories() {
+  _createDirectories = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(directory) {
+    var p;
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
+        case 0:
+          if (!(directory.name && !fs.existsSync(directory.name) && directory.repo_url)) {
+            _context4.next = 6;
+            break;
+          }
+          _context4.next = 3;
+          return cloneLibrary(directory);
+        case 3:
+          p = _context4.sent;
+          _context4.next = 6;
+          return p.then(function () {
+            process.chdir(directory.name);
+          });
+        case 6:
+          if (directory.children) {
+            directory.children.forEach( /*#__PURE__*/function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(childDirectory) {
+                var p;
+                return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                  while (1) switch (_context3.prev = _context3.next) {
+                    case 0:
+                      _context3.next = 2;
+                      return createDirectories(childDirectory);
+                    case 2:
+                      p = _context3.sent;
+                      _context3.next = 5;
+                      return p.then(function () {
+                        process.chdir('..');
+                      });
+                    case 5:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }, _callee3);
+              }));
+              return function (_x5) {
+                return _ref3.apply(this, arguments);
+              };
+            }());
+          }
+          return _context4.abrupt("return", Promise.resolve());
+        case 8:
+        case "end":
+          return _context4.stop();
+      }
+    }, _callee4);
+  }));
+  return _createDirectories.apply(this, arguments);
+}
+function cloneLibrary(directory) {
+  return new Promise(function (resolve, reject) {
+    exec("git clone ".concat(directory.repo_url), function (error, stdout, stderr) {
+      error && console.log("stdout: ".concat(error));
+      stderr && console.log("stderr: ".concat(stderr));
+      resolve();
+    });
+
+    // cloneProcess.on('close', (code) => {
+    //   if (code !== 0) {
+    //     console.log(`git clone process exited with code ${code}`);
+    //   } else {
+    //     /* spawn('sh', [
+    //       '-c',
+    //       `cd ${directory.name} && npm install`
+    //     ]) */
+
+    //     console.log('is close')
+    //   }
+    // });
+  });
+
+  // return git().clone(directory.repo_url)
+}
+
 module.exports = {
   notExistFold: notExistFold,
   prompt: prompt,

@@ -1,0 +1,32 @@
+{
+  "choice_project": [
+    {
+      "project_name": "基础模板core-verse(console、vue-lib、plugin)",
+      "version": "1.0.0",
+      "root_directory": {
+        "children": [
+          {
+            "name": "ajin-ui",
+            "repo_url": "git@github.com:zdjzce923/ajin-ui.git",
+            "children": [
+              {
+                "name": "HellTrain-OpenAi-Tool",
+                "repo_url": "git@github.com:zdjzce923/HellTrain-OpenAi-Tool.git",
+                "children": [
+                  {
+                    "name": "my-blog-website",
+                    "repo_url": "git@github.com:zdjzce923/my-blog-website.git"
+                  }
+                ]
+              },
+              {
+                "name": "phaser3-navigation-demo",
+                "repo_url": "git@github.com:zdjzce923/phaser3-navigation-demo.git"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -24,40 +24,14 @@ var create = /*#__PURE__*/function () {
             notExistFold(ProjectName).then(function () {
               // 用户询问交互
               prompt().then(function (answer) {
-                // 目前只建了一个vue的模板
-                if (answer.frame === 'react') {
-                  console.log(symbol.warning, chalk.yellow('暂无react模板，敬请期待...'));
-                  process.exit(1);
-                }
-
                 /**
                  * 根据用户输入的配置信息下载模版&更新模版配置
                  * 下载模版比较耗时,这里通过ora插入下载loading, 提示用户正在下载模版
                  */
                 var loading = ora('模板下载中...');
                 loading.start('模板下载中...');
-                var Api = '';
-                switch (answer.frame) {
-                  case 'vue':
-                    Api = 'direct:https://github.com/zdjzce923/zdj-vue-monorepo.git';
-                    break;
-                  case 'react':
-                    Api = 'direct:https://github.com/LuoYangYY/react-template.git';
-                    break;
-                  default:
-                    break;
-                }
-                downloadTemplate(ProjectName, Api).then(function () {
+                downloadTemplate(ProjectName, answer.frame).then(function () {
                   loading.succeed('模板下载完成');
-
-                  // 下载完成后,根据用户输入更新配置文件
-                  var fileName = "".concat(ProjectName, "/package.json");
-                  answer.name = ProjectName;
-                  updateJsonFile(fileName, answer).then(function () {
-                    console.log(symbol.success, chalk.green('配置文件更新完的。'));
-                  });
-                }, function () {
-                  loading.fail('模板下载失败');
                 });
               });
             });
