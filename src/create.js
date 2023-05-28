@@ -14,9 +14,7 @@ let create = async (ProjectName) => {
   if (ProjectName === undefined) {
     console.log(symbol.error, chalk.red('创建项目的时候，请输入项目名'));
   } else {
-    // 如果文件名不存在则继续执行,否则退出
     notExistFold(ProjectName).then(() => {
-      // 用户询问交互
       prompt().then((answer) => {
 
         /**

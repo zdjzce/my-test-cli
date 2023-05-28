@@ -20,8 +20,8 @@
                 ]
               },
               {
-                "name": "phaser3-navigation-demo",
-                "repo_url": "git@github.com:zdjzce923/phaser3-navigation-demo.git"
+                "name": "my-test-cli",
+                "repo_url": "git@github.com:zdjzce923/my-test-cli.git"
               }
             ]
           }

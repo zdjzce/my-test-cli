@@ -36,65 +36,58 @@ let prompt = () => {
 
 // 项目模板远程下载
 let downloadTemplate = async (dir, ProjectName) => {
-  return new Promise((resolve, reject) => {
-    directoryTree.choice_project.forEach(dic => {
-      if (dic.project_name === ProjectName) {
+  return new Promise(async resolve => {
+    for (const choice_item of directoryTree.choice_project) {
+      if (choice_item.project_name === ProjectName) {
         process.chdir(dir);
-        createDirectories(dic.root_directory)
+        await createDirectories(choice_item.root_directory)
+        resolve()
       }
-    })
+    }
   });
 };
 
 // 遍历文件夹树并递归创建子文件夹，如果有git仓库地址就clone，没有就只创建文件夹
 async function createDirectories (directory) {
 
-  if (directory.name && !fs.existsSync(directory.name) && directory.repo_url) {
-    const p = await cloneLibrary(directory)
-    await p.then(() => {
+  return new Promise(async resolve => {
+    if (directory.name && !fs.existsSync(directory.name) && directory.repo_url) {
+      await cloneLibrary(directory)
       process.chdir(directory.name)
-    })
-  }
+    }
+  
+  
+    if (directory.children) {
+      for (const childDirectory of directory.children) {
+        await createDirectories(childDirectory);
+        process.chdir('..');
+      }
+    }
+
+    resolve()
+  })
 
 
-  if (directory.children) {
-    directory.children.forEach(async childDirectory => {
-      const p = await createDirectories(childDirectory)
-      await p.then(() => {
-        process.chdir('..')
-      })
-    });
-  }
 
-  return Promise.resolve();
 }
 
 function cloneLibrary (directory) {
-  
-  return new Promise((resolve, reject) => {
+
+  return new Promise(resolve => {
+
     exec(`git clone ${directory.repo_url}`, (error, stdout, stderr) => {
       error && console.log(`stdout: ${error}`);
-      stderr && console.log(`stderr: ${stderr}`);
+      stderr && console.log(`${stderr}`);
+      spawn('sh', [
+        '-c',
+        `cd ${directory.name} && npm install`
+      ])
       resolve()
     })
 
-    // cloneProcess.on('close', (code) => {
-    //   if (code !== 0) {
-    //     console.log(`git clone process exited with code ${code}`);
-    //   } else {
-    //     /* spawn('sh', [
-    //       '-c',
-    //       `cd ${directory.name} && npm install`
-    //     ]) */
-        
-    //     console.log('is close')
-    //   }
-    // });
   })
-
-  // return git().clone(directory.repo_url)
-
-
+  
+  
 }
 
 

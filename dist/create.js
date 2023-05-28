@@ -20,9 +20,7 @@ var create = /*#__PURE__*/function () {
           if (ProjectName === undefined) {
             console.log(symbol.error, chalk.red('创建项目的时候，请输入项目名'));
           } else {
-            // 如果文件名不存在则继续执行,否则退出
             notExistFold(ProjectName).then(function () {
-              // 用户询问交互
               prompt().then(function (answer) {
                 /**
                  * 根据用户输入的配置信息下载模版&更新模版配置
