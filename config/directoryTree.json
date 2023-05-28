@@ -4,24 +4,54 @@
       "project_name": "基础模板core-verse(console、vue-lib、plugin)",
       "version": "1.0.0",
       "root_directory": {
+        "name": "core-verse",
+        "repo_url": "http://github.chainopen.cn/cverse/core-verse.git",
         "children": [
           {
-            "name": "ajin-ui",
-            "repo_url": "git@github.com:zdjzce923/ajin-ui.git",
+            "name": "packages",
             "children": [
               {
-                "name": "HellTrain-OpenAi-Tool",
-                "repo_url": "git@github.com:zdjzce923/HellTrain-OpenAi-Tool.git",
-                "children": [
-                  {
-                    "name": "my-blog-website",
-                    "repo_url": "git@github.com:zdjzce923/my-blog-website.git"
-                  }
-                ]
+                "name": "core-console",
+                "repo_url": "http://github.chainopen.cn/cverse/core-console.git"
               },
               {
-                "name": "my-test-cli",
-                "repo_url": "git@github.com:zdjzce923/my-test-cli.git"
+                "name": "core-ide-plugin",
+                "children": [
+                  {
+                    "name": "external",
+                    "children": [
+                      {
+                        "name": "core-config",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-config.git"
+                      },
+                      {
+                        "name": "core-lib",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-lib.git"
+                      },
+                      {
+                        "name": "core-lib-vue",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-lib-vue.git"
+                      },
+                      {
+                        "name": "plugin",
+                        "children": [
+                          {
+                            "name": "plugin-news",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-news.git"
+                          },
+                          {
+                            "name": "plugin-template",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-template.git"
+                          },
+                          {
+                            "name": "plugin-token20",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-token20.git"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }

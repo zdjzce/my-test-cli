@@ -6,9 +6,6 @@ const promptList = require('../config/promptList.json');
 const directoryTree = require('../config/directoryTree.json');
 const { spawn } = require('child_process');
 const { exec } = require('child_process');
-const git = require('simple-git')
-// const git = require('isomorphic-git')
-// const http = require('isomorphic-git/http/node')
 
 
 // 文件是否存在
@@ -53,6 +50,9 @@ async function createDirectories (directory) {
   return new Promise(async resolve => {
     if (directory.name && !fs.existsSync(directory.name) && directory.repo_url) {
       await cloneLibrary(directory)
+      process.chdir(directory.name)
+    } else if (directory.name && !fs.existsSync(directory.name)) {
+      fs.mkdirSync(directory.name);
       process.chdir(directory.name)
     }
   

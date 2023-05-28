@@ -17,9 +17,6 @@ var _require = require('child_process'),
   spawn = _require.spawn;
 var _require2 = require('child_process'),
   exec = _require2.exec;
-var git = require('simple-git');
-// const git = require('isomorphic-git')
-// const http = require('isomorphic-git/http/node')
 
 // 文件是否存在
 var notExistFold = /*#__PURE__*/function () {
@@ -136,52 +133,59 @@ function _createDirectories() {
                 while (1) switch (_context4.prev = _context4.next) {
                   case 0:
                     if (!(directory.name && !fs.existsSync(directory.name) && directory.repo_url)) {
-                      _context4.next = 4;
+                      _context4.next = 6;
                       break;
                     }
                     _context4.next = 3;
                     return cloneLibrary(directory);
                   case 3:
                     process.chdir(directory.name);
-                  case 4:
+                    _context4.next = 7;
+                    break;
+                  case 6:
+                    if (directory.name && !fs.existsSync(directory.name)) {
+                      fs.mkdirSync(directory.name);
+                      process.chdir(directory.name);
+                    }
+                  case 7:
                     if (!directory.children) {
-                      _context4.next = 23;
+                      _context4.next = 26;
                       break;
                     }
                     _iterator2 = _createForOfIteratorHelper(directory.children);
-                    _context4.prev = 6;
+                    _context4.prev = 9;
                     _iterator2.s();
-                  case 8:
+                  case 11:
                     if ((_step2 = _iterator2.n()).done) {
-                      _context4.next = 15;
+                      _context4.next = 18;
                       break;
                     }
                     childDirectory = _step2.value;
-                    _context4.next = 12;
+                    _context4.next = 15;
                     return createDirectories(childDirectory);
-                  case 12:
-                    process.chdir('..');
-                  case 13:
-                    _context4.next = 8;
-                    break;
                   case 15:
-                    _context4.next = 20;
+                    process.chdir('..');
+                  case 16:
+                    _context4.next = 11;
                     break;
-                  case 17:
-                    _context4.prev = 17;
-                    _context4.t0 = _context4["catch"](6);
-                    _iterator2.e(_context4.t0);
+                  case 18:
+                    _context4.next = 23;
+                    break;
                   case 20:
                     _context4.prev = 20;
-                    _iterator2.f();
-                    return _context4.finish(20);
+                    _context4.t0 = _context4["catch"](9);
+                    _iterator2.e(_context4.t0);
                   case 23:
+                    _context4.prev = 23;
+                    _iterator2.f();
+                    return _context4.finish(23);
+                  case 26:
                     resolve();
-                  case 24:
+                  case 27:
                   case "end":
                     return _context4.stop();
                 }
-              }, _callee4, null, [[6, 17, 20, 23]]);
+              }, _callee4, null, [[9, 20, 23, 26]]);
             }));
             return function (_x6) {
               return _ref4.apply(this, arguments);

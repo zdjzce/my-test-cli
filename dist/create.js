@@ -24,7 +24,6 @@ var create = /*#__PURE__*/function () {
               prompt().then(function (answer) {
                 /**
                  * 根据用户输入的配置信息下载模版&更新模版配置
-                 * 下载模版比较耗时,这里通过ora插入下载loading, 提示用户正在下载模版
                  */
                 var loading = ora('模板下载中...');
                 loading.start('模板下载中...');
