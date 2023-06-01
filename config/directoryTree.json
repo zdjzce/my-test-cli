@@ -1,0 +1,69 @@
+{
+  "choice_project": [
+    {
+      "project_name": "基础模板core-verse(console、vue-lib、plugin)",
+      "version": "1.0.0",
+      "root_directory": {
+        "name": "core-verse",
+        "repo_url": "http://github.chainopen.cn/cverse/core-verse.git",
+        "children": [
+          {
+            "name": "packages",
+            "children": [
+              {
+                "name": "core-console",
+                "repo_url": "http://github.chainopen.cn/cverse/core-console.git"
+              },
+              {
+                "name": "core-ide-plugin",
+                "children": [
+                  {
+                    "name": "external",
+                    "children": [
+                      {
+                        "name": "core-config",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-config.git"
+                      },
+                      {
+                        "name": "core-lib",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-lib.git"
+                      },
+                      {
+                        "name": "core-lib-vue",
+                        "repo_url": "http://github.chainopen.cn/cverse/core-lib-vue.git"
+                      },
+                      {
+                        "name": "plugin",
+                        "children": [
+                          {
+                            "name": "plugin-news",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-news.git"
+                          },
+                          {
+                            "name": "plugin-template",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-template.git"
+                          },
+                          {
+                            "name": "plugin-token20",
+                            "repo_url": "http://github.chainopen.cn/cverse/plugin-token20.git"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "project_name": "plugin通用",
+      "root_directory": {
+        "name": "plugin-template",
+        "repo_url": "http://github.chainopen.cn/cverse/plugin-template.git"
+      }
+    }
+  ]
+}

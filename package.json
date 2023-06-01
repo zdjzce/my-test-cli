@@ -1,0 +1,31 @@
+{
+  "name": "@cverse/cli",
+  "version": "0.1.2",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "babel src --out-dir dist --source-maps --watch ",
+    "watch": "npm run compile --watch"
+  },
+  "bin": {
+    "cverse-cli": "./bin/cli.js",
+    "cv": "./bin/cli.js"
+  },
+  "author": "zdj",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "chalk": "^3.0.0",
+    "commander": "^10.0.1",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.1.0",
+    "log-symbols": "^3.0.0",
+    "ora": "^4.0.3",
+    "simple-git": "^3.19.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1"
+  }
+}

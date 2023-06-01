@@ -1,0 +1,13 @@
+{
+  "promptList": [
+    {
+      "type": "list",
+      "name": "frame",
+      "message": "选择模板类型:",
+      "choices": [
+        "基础模板core-verse(console、vue-lib、plugin)",
+        "plugin通用"
+      ]
+    }
+  ]
+}
