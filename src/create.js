@@ -14,25 +14,18 @@ let create = async (ProjectName) => {
   if (ProjectName === undefined) {
     console.log(symbol.error, chalk.red('创建项目的时候，请输入项目名'));
   } else {
-    notExistFold(ProjectName).then(() => {
-      prompt().then((answer) => {
-        console.log('answer:', answer)
+    await notExistFold(ProjectName)
+    const answer = await prompt()
 
-        /**
-         * 根据用户输入的配置信息下载模版&更新模版配置
-         */
-        let loading = ora('模板下载中...');
-        loading.start('模板下载中...');
+    /**
+     * 根据用户输入的配置信息下载模版&更新模版配置
+     */
+    let loading = ora('模板下载中...');
+    loading.start('模板下载中...');
 
-        downloadTemplate(ProjectName, answer.frame)
-          .then(() => {
-            loading.succeed('模板下载完成');
-            // console.log('模板下载完成process.cwd()', process.cwd())
-            // answer.rename && fs.renameSync()
-            // answer.git
-          });
-      })
-    });
+    await downloadTemplate(ProjectName, answer.frame)
+    loading.succeed('模板下载完成');
+
   }
 };
 

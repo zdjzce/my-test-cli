@@ -1,6 +1,6 @@
 {
   "name": "@cverse/cli",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {

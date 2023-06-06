@@ -18,15 +18,6 @@ let actionMap = {
     ],
     alias: 'cvc' // 命令简称
   },
-  // 项目初始化
-  /* init: {
-    description: '初始化项目',
-    usages: [
-      'e-cli init',
-      'ec init',
-    ],
-    alias: 'tci'
-  }, */
 }
 
 // 添加create,init命令
